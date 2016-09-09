@@ -5,15 +5,18 @@ from time import sleep
 from selenium import webdriver
 
 
-class OSLAB_HW(OSLAB_login):
-    def download_hw1(self, post_url):
+class OSLAB_hw(OSLAB_login):
+    def __init__(self):
+       super(OSLAB_hw, self).__init__()
+       self.hw1_post_url = os.environ.get('HW1_POST_URL')
+
+    def download_hw1(self):
         self.browser = self.login()
 
         # Temporary solution, without implicit, explicit wait
         sleep(3)
 
-        URL = post_url
-        self.browser.get(URL)
+        self.browser.get(self.hw1_post_url)
 
         files = self.browser.find_element_by_class_name('fileAttached')
         files_ul = files.find_element_by_tag_name('ul')
@@ -24,5 +27,5 @@ class OSLAB_HW(OSLAB_login):
         print("ok")
 
 
-hw = OSLAB_HW()
+hw = OSLAB_hw()
 hw.download_hw1()

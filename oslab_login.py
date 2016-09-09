@@ -7,7 +7,6 @@ class OSLAB_login():
 
     def __init__(self):
         self.login_url = os.environ.get('LOGIN_URL')
-        # Don't declare browser here for continous session
 
     def login(self):
         browser = webdriver.Firefox()
